@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Unit Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Money cost</th>
+      <th>Material cost</th>
+      <th>Movement</th>
+      <th>Attack</th>
+      <th>Defense</th>
+      <th>Range attack</th>
+      <th>Cargo capacity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unit_types.each do |unit_type| %>
+      <tr>
+        <td><%= unit_type.name %></td>
+        <td><%= unit_type.code %></td>
+        <td><%= unit_type.description %></td>
+        <td><%= unit_type.money_cost %></td>
+        <td><%= unit_type.material_cost %></td>
+        <td><%= unit_type.movement %></td>
+        <td><%= unit_type.attack %></td>
+        <td><%= unit_type.defense %></td>
+        <td><%= unit_type.range_attack %></td>
+        <td><%= unit_type.cargo_capacity %></td>
+        <td><%= link_to 'Show', unit_type %></td>
+        <td><%= link_to 'Edit', edit_unit_type_path(unit_type) %></td>
+        <td><%= link_to 'Destroy', unit_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unit type', new_unit_type_path %>

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit_type.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @unit_type.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @unit_type.description %>
+</p>
+
+<p>
+  <strong>Money cost:</strong>
+  <%= @unit_type.money_cost %>
+</p>
+
+<p>
+  <strong>Material cost:</strong>
+  <%= @unit_type.material_cost %>
+</p>
+
+<p>
+  <strong>Movement:</strong>
+  <%= @unit_type.movement %>
+</p>
+
+<p>
+  <strong>Attack:</strong>
+  <%= @unit_type.attack %>
+</p>
+
+<p>
+  <strong>Defense:</strong>
+  <%= @unit_type.defense %>
+</p>
+
+<p>
+  <strong>Range attack:</strong>
+  <%= @unit_type.range_attack %>
+</p>
+
+<p>
+  <strong>Cargo capacity:</strong>
+  <%= @unit_type.cargo_capacity %>
+</p>
+
+<%= link_to 'Edit', edit_unit_type_path(@unit_type) %> |
+<%= link_to 'Back', unit_types_path %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Unit Actions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Description</th>
+      <th>Position state</th>
+      <th>Unit action type</th>
+      <th>Phase</th>
+      <th>Cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unit_actions.each do |unit_action| %>
+      <tr>
+        <td><%= unit_action.name %></td>
+        <td><%= unit_action.code %></td>
+        <td><%= unit_action.description %></td>
+        <td><%= unit_action.position_state_id %></td>
+        <td><%= unit_action.unit_action_type_id %></td>
+        <td><%= unit_action.phase %></td>
+        <td><%= unit_action.cost %></td>
+        <td><%= link_to 'Show', unit_action %></td>
+        <td><%= link_to 'Edit', edit_unit_action_path(unit_action) %></td>
+        <td><%= link_to 'Destroy', unit_action, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Unit action', new_unit_action_path %>

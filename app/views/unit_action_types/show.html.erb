@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit_action_type.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @unit_action_type.code %>
+</p>
+
+<p>
+  <strong>Description template:</strong>
+  <%= @unit_action_type.description_template %>
+</p>
+
+<p>
+  <strong>Results template:</strong>
+  <%= @unit_action_type.results_template %>
+</p>
+
+<%= link_to 'Edit', edit_unit_action_type_path(@unit_action_type) %> |
+<%= link_to 'Back', unit_action_types_path %>

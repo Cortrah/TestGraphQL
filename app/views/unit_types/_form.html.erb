@@ -1,0 +1,57 @@
+<%= form_for(@unit_type) do |f| %>
+  <% if @unit_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@unit_type.errors.count, "error") %> prohibited this unit_type from being saved:</h2>
+
+      <ul>
+      <% @unit_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :money_cost %><br>
+    <%= f.number_field :money_cost %>
+  </div>
+  <div class="field">
+    <%= f.label :material_cost %><br>
+    <%= f.number_field :material_cost %>
+  </div>
+  <div class="field">
+    <%= f.label :movement %><br>
+    <%= f.number_field :movement %>
+  </div>
+  <div class="field">
+    <%= f.label :attack %><br>
+    <%= f.number_field :attack %>
+  </div>
+  <div class="field">
+    <%= f.label :defense %><br>
+    <%= f.number_field :defense %>
+  </div>
+  <div class="field">
+    <%= f.label :range_attack %><br>
+    <%= f.number_field :range_attack %>
+  </div>
+  <div class="field">
+    <%= f.label :cargo_capacity %><br>
+    <%= f.number_field :cargo_capacity %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  next_tick: 2016-02-10 10:47:02
+  map_id: 1
+  current_turn_id: 1
+
+two:
+  name: MyString
+  next_tick: 2016-02-10 10:47:02
+  map_id: 1
+  current_turn_id: 1

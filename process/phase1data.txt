@@ -13,17 +13,13 @@ rails g scaffold Position name:string code:string color:integer first_turn:integ
 	has_many :PositionStates
 	belongs_to :Game
 
-rails g scaffold PositionState name:string position_id:integer turn_id:integer score:integer trade_value:integer
-        money_income:integer materials_income:integer research_income:integer
-        saved_money:integer saved_materials:integer saved_research:integer
+rails g scaffold PositionState name:string position_id:integer turn_id:integer score:integer trade_value:integer money_income:integer materials_income:integer research_income:integer saved_money:integer saved_materials:integer saved_research:integer
 	belongs_to :Position
 	belongs_to :Turn
 	has_many :Regions
 	has_many :Units
 
-rails g scaffold Region name:string code:string row:integer  col:integer
-        environment_id:integer position_state_id:integer map_id:integer
-        money:integer materials:integer research:integer
+rails g scaffold Region name:string code:string row:integer  col:integer environment_id:integer position_state_id:integer map_id:integer money:integer materials:integer research:integer
 	has_one :Environment
 	belongs_to :Map
 	belongs_to :PositionState
@@ -49,11 +45,8 @@ rails g scaffold BorderType name:string code:string description:text is_directio
 
 rails g scaffold Unit name:string code:string description:text
 
-rails g scaffold UnitType name:string code:string description:text
-    money_cost:integer material_cost:integer movement:integer
-    attack:integer defense:integer range_attack:integer cargo_capacity:integer
+rails g scaffold UnitType name:string code:string description:text money_cost:integer material_cost:integer movement:integer attack:integer defense:integer range_attack:integer cargo_capacity:integer
 
-rails g scaffold UnitAction name:string code:string description:text
-    position_state_id:integer unit_action_type_id:integer phase:integer cost:integer
+rails g scaffold UnitAction name:string code:string description:text position_state_id:integer unit_action_type_id:integer phase:integer cost:integer
 
 rails g scaffold UnitActionType name:string code:string description_template:text results_template:text

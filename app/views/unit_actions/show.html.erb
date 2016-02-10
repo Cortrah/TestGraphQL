@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit_action.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @unit_action.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @unit_action.description %>
+</p>
+
+<p>
+  <strong>Position state:</strong>
+  <%= @unit_action.position_state_id %>
+</p>
+
+<p>
+  <strong>Unit action type:</strong>
+  <%= @unit_action.unit_action_type_id %>
+</p>
+
+<p>
+  <strong>Phase:</strong>
+  <%= @unit_action.phase %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @unit_action.cost %>
+</p>
+
+<%= link_to 'Edit', edit_unit_action_path(@unit_action) %> |
+<%= link_to 'Back', unit_actions_path %>

@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  resources :unit_action_types
+  resources :unit_actions
+  resources :unit_types
+  resources :units
+  resources :border_types
+  resources :regions_borders
+  resources :areas
+  resources :maps
+  resources :environment_types
+  resources :environments
+  resources :regions
+  resources :position_states
+  resources :positions
+  resources :turns
+  resources :games
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

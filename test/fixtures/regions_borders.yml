@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  source_id: 1
+  sink_id: 1
+  border_type_id: 1
+  is_secret: false
+
+two:
+  name: MyString
+  source_id: 1
+  sink_id: 1
+  border_type_id: 1
+  is_secret: false

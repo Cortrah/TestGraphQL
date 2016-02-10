@@ -1,0 +1,61 @@
+<%= form_for(@position_state) do |f| %>
+  <% if @position_state.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@position_state.errors.count, "error") %> prohibited this position_state from being saved:</h2>
+
+      <ul>
+      <% @position_state.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :position_id %><br>
+    <%= f.number_field :position_id %>
+  </div>
+  <div class="field">
+    <%= f.label :turn_id %><br>
+    <%= f.number_field :turn_id %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.number_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :trade_value %><br>
+    <%= f.number_field :trade_value %>
+  </div>
+  <div class="field">
+    <%= f.label :money_income %><br>
+    <%= f.number_field :money_income %>
+  </div>
+  <div class="field">
+    <%= f.label :materials_income %><br>
+    <%= f.number_field :materials_income %>
+  </div>
+  <div class="field">
+    <%= f.label :research_income %><br>
+    <%= f.number_field :research_income %>
+  </div>
+  <div class="field">
+    <%= f.label :saved_money %><br>
+    <%= f.number_field :saved_money %>
+  </div>
+  <div class="field">
+    <%= f.label :saved_materials %><br>
+    <%= f.number_field :saved_materials %>
+  </div>
+  <div class="field">
+    <%= f.label :saved_research %><br>
+    <%= f.number_field :saved_research %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

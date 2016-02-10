@@ -1,0 +1,37 @@
+<%= form_for(@regions_border) do |f| %>
+  <% if @regions_border.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@regions_border.errors.count, "error") %> prohibited this regions_border from being saved:</h2>
+
+      <ul>
+      <% @regions_border.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :source_id %><br>
+    <%= f.number_field :source_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sink_id %><br>
+    <%= f.number_field :sink_id %>
+  </div>
+  <div class="field">
+    <%= f.label :border_type_id %><br>
+    <%= f.number_field :border_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_secret %><br>
+    <%= f.check_box :is_secret %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

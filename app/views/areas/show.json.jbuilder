@@ -1,0 +1,1 @@
+json.extract! @area, :id, :name, :code, :description, :created_at, :updated_at
