@@ -1,52 +1,68 @@
-rails g scaffold Game name:string  next_tick:datetime  map_id:integer current_turn_id:integer
-    has_one :Map
-    has_one :Turn
-    has_many :Turns
-    has_many :Positions
+Game name:string  next_tick:datetime  map_id:integer current_turn_id:integer
+  has_one :Map
+  has_one :current_turn, :class_name => "Turn"
+  has_many :Turns
+  has_many :Positions
 
-rails g scaffold Turn number:integer introduction:text results:text
+Turn number:integer introduction:text results:text
     has_many :Positions
     belongs_to :Game
 
-rails g scaffold Position name:string code:string color:integer first_turn:integer  last_turn:integer  is_secret:boolean
-    has_one :Race
-	has_many :PositionStates
-	belongs_to :Game
+Map name:string code:string rows:integer  cols:integer
+    has_many :Areas
+    has_many :Regions
+*   belongs_to :Game
 
-rails g scaffold PositionState name:string position_id:integer turn_id:integer score:integer trade_value:integer money_income:integer materials_income:integer research_income:integer saved_money:integer saved_materials:integer saved_research:integer
+Position name:string code:string color:integer
+                          first_turn:integer  last_turn:integer  is_secret:boolean
+	has_many :PositionStates
+*	belongs_to :Game
+
+PositionState name:string position_id:integer turn_id:integer score:integer trade_value:integer
+                               money_income:integer materials_income:integer research_income:integer
+                               saved_money:integer saved_materials:integer saved_research:integer
 	belongs_to :Position
 	belongs_to :Turn
 	has_many :Regions
-	has_many :Units
 
-rails g scaffold Region name:string code:string row:integer  col:integer environment_id:integer position_state_id:integer map_id:integer money:integer materials:integer research:integer
+Region name:string code:string row:integer  col:integer
+                        environment_id:integer position_state_id:integer map_id:integer
+                        money:integer materials:integer research:integer
 	has_one :Environment
 	belongs_to :Map
 	belongs_to :PositionState
     has_many :RegionsBorders
     has_many :Areas
 
-rails g scaffold Environment name:string code:string environment_type_id:integer description:text
+Environment name:string code:string environment_type_id:integer description:text
     belongs_to :EnvironmentType
 
-rails g scaffold EnvironmentType name:string code:string description:text
+EnvironmentType name:string code:string description:text
 
-rails g scaffold Map name:string code:string rows:integer  cols:integer
-    has_many :Areas
+Area name:string code:string description:string
     has_many :Regions
+*	belongs_to :Map
 
-rails g scaffold Area name:string code:string description:string
-    has_many :Regions
-
-rails g scaffold RegionsBorder name:string source_id:integer sink_id:integer border_type_id:integer is_secret:boolean
+RegionsBorder name:string source_id:integer sink_id:integer border_type_id:integer is_secret:boolean
+    belongs_to :source, :class_name => "Region"
+    belongs_to :sink, :class_name => "Region"
     has_one :BorderType
 
-rails g scaffold BorderType name:string code:string description:text is_directional:boolean
+BorderType name:string code:string description:text is_directional:boolean
+
+--- can wait ---
+ PositionState
+	has_many :Units
 
 rails g scaffold Unit name:string code:string description:text
 
-rails g scaffold UnitType name:string code:string description:text money_cost:integer material_cost:integer movement:integer attack:integer defense:integer range_attack:integer cargo_capacity:integer
+rails g scaffold UnitType name:string code:string description:text
+                           money_cost:integer material_cost:integer movement:integer
+                           attack:integer defense:integer range_attack:integer
+                           cargo_capacity:integer
 
-rails g scaffold UnitAction name:string code:string description:text position_state_id:integer unit_action_type_id:integer phase:integer cost:integer
+rails g scaffold UnitAction name:string code:string description:text
+                            position_state_id:integer unit_action_type_id:integer
+                            phase:integer cost:integer
 
 rails g scaffold UnitActionType name:string code:string description_template:text results_template:text
