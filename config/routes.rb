@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :areas
+  resources :areas
+  resources :areas
+  resources :areas
   resources :unit_action_types
   resources :unit_actions
   resources :unit_types

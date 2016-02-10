@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210155020) do
+ActiveRecord::Schema.define(version: 20160210210545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160210155020) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "map_id"
   end
 
   create_table "border_types", force: :cascade do |t|
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160210155020) do
     t.integer  "cols"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "game_id"
   end
 
   create_table "position_states", force: :cascade do |t|
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160210155020) do
     t.boolean  "is_secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "game_id"
   end
 
   create_table "regions", force: :cascade do |t|
