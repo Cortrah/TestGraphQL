@@ -43,6 +43,7 @@ GEM
       execjs (~> 2.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    blankslate (3.1.3)
     builder (3.2.2)
     byebug (8.2.2)
     coffee-rails (4.1.1)
@@ -59,6 +60,8 @@ GEM
     execjs (2.6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    graphql (0.10.9)
+      parslet (~> 1.6)
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -74,6 +77,8 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    parslet (1.7.1)
+      blankslate (>= 2.0, <= 4.0)
     pg (0.18.4)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -152,6 +157,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
+  graphql
   jbuilder (~> 2.0)
   pg (~> 0.15)
   rails (= 4.2.5.1)

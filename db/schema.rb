@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210210545) do
+ActiveRecord::Schema.define(version: 20160211024715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160210210545) do
     t.integer  "research"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.boolean  "is_secret"
   end
 
   create_table "regions_borders", force: :cascade do |t|
