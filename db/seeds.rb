@@ -9,13 +9,16 @@
 # Games
 #----------------------
 # status:2 is playing as I want to first flesh out the minimum start of a game after all the setup and invitations
-games = Game.create([{id:0, name:"SpaceOpera", :next_tick => DateTime.new(2016,12,3,0), map_id:0, current_turn_id:0}])
+games = Game.create([
+  {id:0, name:"SpaceOpera", :next_tick => DateTime.new(2016,12,3,0), map_id:0, current_turn_id:0}])
 
 #----------------------
 # Turns
 #----------------------
 # status:2 is received as the first state we are testing is that players see different maps based on authorization
-turns = Turn.create([{id:0, number:0, introduction:"Your race has begun to explore the universe", results:""}])
+turns = Turn.create([{id:0, number:0, game_id:0,
+                      introduction:"Your race has begun to explore the universe. good luck.",
+                      results:""}])
 
 #----------------------
 # Maps
@@ -108,11 +111,18 @@ environmentTypes = EnvironmentType.create([
 #----------------------
 # Areas
 #----------------------
+areas = Area.create([
+  {id:0, name: "Unknown", code:"?", description: 'A mysterious area'}])
+
 
 #----------------------
 # RegionsBorders
 #----------------------
+regionsBorders = RegionsBorder.create([
+  {id:0, name: "Unknown", source_id:0, sink_id:0, border_type_id:0, is_secret:false}])
 
 #----------------------
 # BorderTypes
 #----------------------
+borderType = BorderType.create([
+  {id:0, name: "Unknown", code:"?", description:"who knows", is_directional:false}])
