@@ -1,3 +1,15 @@
+Game.delete_all
+Turn.delete_all
+Map.delete_all
+Position.delete_all
+PositionState.delete_all
+Region.delete_all
+Environment.delete_all
+EnvironmentType.delete_all
+Area.delete_all
+RegionsBorder.delete_all
+BorderType.delete_all
+
 #=======================
 # Conventions
 #=======================
@@ -9,26 +21,25 @@
 # Games
 #----------------------
 # status:2 is playing as I want to first flesh out the minimum start of a game after all the setup and invitations
-games = Game.create([
-  {id:0, name:"SpaceOpera", :next_tick => DateTime.new(2016,12,3,0), map_id:0, current_turn_id:0}])
+games = Game.create!([{id:0, name:"SpaceOpera", :next_tick => DateTime.new(2016,12,3,0), map_id:0, current_turn_id:0}])
 
 #----------------------
 # Turns
 #----------------------
 # status:2 is received as the first state we are testing is that players see different maps based on authorization
-turns = Turn.create([{id:0, number:0, game_id:0,
-                      introduction:"Your race has begun to explore the universe. good luck.",
-                      results:""}])
+turns = Turn.create!([{ id:0, number:0, game_id:0,
+                       introduction:"Your race has begun to explore the universe. good luck.",
+                       results:""}])
 
 #----------------------
 # Maps
 #----------------------
-maps = Map.create([{id:0, name:"Earth", code:"Eth", rows:20, cols:20, game_id:0}])
+maps = Map.create!([{id:0, name:"Earth", code:"Eth", rows:20, cols:20, game_id:0}])
 
 #----------------------
 # Positions
 #----------------------
-positions = Position.create([
+positions = Position.create!([
   {id:0, name: "Unknown",     code:"?",   game_id:0,  color: 0,        first_turn:0, last_turn:0, is_secret:false},
   {id:1, name: "Attuburrk",   code:"Att", game_id:0,  color: 10202,    first_turn:0, last_turn:0, is_secret:false},
   {id:2, name: "Kommolek",    code:"Kom", game_id:0,  color: 1939111,  first_turn:0, last_turn:0, is_secret:false},
@@ -37,48 +48,37 @@ positions = Position.create([
 #----------------------
 # PositionStates
 #----------------------
-positionStates = PositionState.create([
-  {id:0, name: "Unknown:0",
-   position_id:0, turn_id:0,
-   score:0, trade_value:0,
-   money_income:0, materials_income:0, research_income:0,
-   saved_money:0, saved_materials:0, saved_research:0
-  },
-  {id:1, name: "Attuburrk:0",
-   position_id:1, turn_id:0,
-   score:0, trade_value:0,
-   money_income:0, materials_income:0, research_income:0,
-   saved_money:0, saved_materials:0, saved_research:0
-  },
-  {id:2, name: "Kommolek:0",
-   position_id:2, turn_id:0,
-   score:0, trade_value:0,
-   money_income:0, materials_income:0, research_income:0,
-   saved_money:0, saved_materials:0, saved_research:0
-  },
-  {id:3, name: "Dread Empire:0",
-   position_id:3, turn_id:0,
-   score:0, trade_value:0,
-   money_income:0, materials_income:0, research_income:0,
-   saved_money:0, saved_materials:0, saved_research:0
-  }])
+positionStates = positions.each do |p|
+  PositionState.create!({  name: p.name + ':0',
+                     position_id:p.id, turn_id:0,
+                     score:0, trade_value:0,
+                     money_income:0, materials_income:0, research_income:0,
+                     saved_money:0, saved_materials:0, saved_research:0
+  })
+end
 
 #----------------------
 # Regions
 #----------------------
-regions = Region.create([
+regions = Region.create!([
   {id:0, name: "Unknown", code:'?',
-   map_id: 0, row: 0, col: 0, money:0, materials:1, research:0,
+   map_id: 0, row: 0, col: 0,
+   money:0, materials:1, research:0,
    environment_id:0, position_state_id:0, is_secret:'false'},
   {id:1, name: "Forests of Venkati", code: 'Venk',
-   map_id: 0, row: 0, col: 0, money:0, materials:0, research:1,
+   map_id: 0, row: 0, col: 0,
+   money:0, materials:0, research:1,
    environment_id:3, position_state_id:1, is_secret:'false'},
   {id:2, name: "Plateau of Leng", code: 'Leng',
-   map_id: 0, row: 1, col: 0, money:0, materials:1, research:1,
+   map_id: 0, row: 1, col: 0,
+   money:0, materials:1, research:1,
    environment_id:1, position_state_id:2, is_secret:'false'},
   {id:3, name: "Hills of Fontaine", code: 'Font',
-   map_id: 0, row: 0, col: 2, money:1, materials:0, research:1,
+   map_id: 0, row: 0, col: 2,
+   money:1, materials:0, research:1,
    environment_id:2, position_state_id:3, is_secret:'false'}])
+
+
 
 #----------------------
 # Environments
@@ -91,7 +91,7 @@ regions = Region.create([
 # when these descriptions are made into a set of constraints
 # we can compute these automatically and or use a long description field for game manual descriptions
 # then that field will be xml or markdown for rich text
-environments = Environment.create([
+environments = Environment.create!([
   {id:0, name: 'Unknown',   code: '?', environment_type_id:1, description: 'A mystery'},
   {id:1, name: 'Clear',     code: 'c', environment_type_id:1, description: 'Plain terrain with no modifiers'},
   {id:2, name: 'Hills',     code: 'h', environment_type_id:1, description: '+1 mv land qr <= 2, no mv naval, +1 def vs land'},
@@ -103,7 +103,7 @@ environments = Environment.create([
 #----------------------
 # EnvironmentTypes
 #----------------------
-environmentTypes = EnvironmentType.create([
+environmentTypes = EnvironmentType.create!([
   {id:0, name: "Unknown",     code:"?", description: 'A mystery'},
   {id:1, name: "Terrain",   code:"Ter", description: 'Default Earth Terrain Types'},
   {id:2, name: "Space",   code:"Spc", description: 'Default Space Map'}])
@@ -111,18 +111,18 @@ environmentTypes = EnvironmentType.create([
 #----------------------
 # Areas
 #----------------------
-areas = Area.create([
+areas = Area.create!([
   {id:0, name: "Unknown", code:"?", description: 'A mysterious area'}])
 
 
 #----------------------
 # RegionsBorders
 #----------------------
-regionsBorders = RegionsBorder.create([
+regionsBorders = RegionsBorder.create!([
   {id:0, name: "Unknown", source_id:0, sink_id:0, border_type_id:0, is_secret:false}])
 
 #----------------------
 # BorderTypes
 #----------------------
-borderType = BorderType.create([
+borderType = BorderType.create!([
   {id:0, name: "Unknown", code:"?", description:"who knows", is_directional:false}])
