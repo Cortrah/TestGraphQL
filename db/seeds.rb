@@ -1,3 +1,11 @@
+#=======================
+# Conventions
+#=======================
+# every table has a default id:1 element that we can fall back to in the interface if something is unknown,
+# 'code' is a small string key for an icon,
+# when an icon doesn't exist, we use the code characters as a fallback for a short label in the interface
+# try to make codes 4 characters or less so that they don't take much width if they have to be used instead of the icon
+
 Game.delete_all
 Turn.delete_all
 Map.delete_all
@@ -9,13 +17,6 @@ EnvironmentType.delete_all
 Area.delete_all
 RegionsBorder.delete_all
 BorderType.delete_all
-
-#=======================
-# Conventions
-#=======================
-# every table has a default id:0 element that we can fall back to in the interface if something is unknown, a soft nil
-# code is a small string key for an icon, when an icon doesn't exist, we use the characters as a fallback as a label
-# try to make codes 4 characters or less so that they don't take much width if they have to be used instead of the icon
 
 #----------------------
 # Games
@@ -41,9 +42,9 @@ maps = Map.create!([{id:1, name:"Earth", code:"Eth", rows:20, cols:20, game_id:1
 #----------------------
 positions = Position.create!([
   {id:1, name: "Unknown",     code:"?",   game_id:1,  color: 0,        first_turn:1, last_turn:1, is_secret:false},
-  {id:2, name: "Attuburrk",   code:"Att", game_id:1,  color: 10202,    first_turn:1, last_turn:1, is_secret:false},
-  {id:3, name: "Kommolek",    code:"Kom", game_id:1,  color: 1939111,  first_turn:1, last_turn:1, is_secret:false},
-  {id:4, name: "Dread Empire",code:"DrE", game_id:1,  color: 43194444, first_turn:1, last_turn:1, is_secret:false}])
+  {id:2, name: "Terrans", code:"Ant", game_id:1,  color: 10202,    first_turn:1, last_turn:1, is_secret:false},
+  {id:3, name: "Arachnids",    code:"Kom", game_id:1,  color: 1939111,  first_turn:1, last_turn:1, is_secret:false},
+  {id:4, name: "Robotoids",code:"DrE", game_id:1,  color: 43194444, first_turn:1, last_turn:1, is_secret:false}])
 
 #----------------------
 # PositionStates
@@ -60,25 +61,18 @@ end
 #----------------------
 # Regions
 #----------------------
-regions = Region.create!([
-  {id:1, name: "Unknown", code:'?',
-   map_id: 1, row: 0, col: 0,
-   money:0, materials:1, research:0,
-   environment_id:1, position_state_id:1, is_secret:'false'},
-  {id:2, name: "Forests of Venkati", code: 'Venk',
-   map_id: 1, row: 0, col: 0,
-   money:0, materials:0, research:1,
-   environment_id:3, position_state_id:1, is_secret:'false'},
-  {id:3, name: "Plateau of Leng", code: 'Leng',
-   map_id: 1, row: 1, col: 0,
-   money:0, materials:1, research:1,
-   environment_id:1, position_state_id:3, is_secret:'false'},
-  {id:4, name: "Hills of Fontaine", code: 'Font',
-   map_id: 1, row: 0, col: 2,
-   money:1, materials:0, research:1,
-   environment_id:2, position_state_id:4, is_secret:'false'}])
-
-
+(1..maps[0].rows).each do |r|
+  (1..maps[0].cols).each do |c|
+    # in the future get a list of names and randomize them
+    # and init the position_state_id to a colection of regions per position
+    Region.create!(
+         name: r.to_s + ":" + c.to_s, code:r.to_s + ":" + c.to_s,
+         map_id: 1, row: r, col: c,
+         money:0, materials:1, research:0,
+         environment_id:1, position_state_id:1, is_secret:'false')
+  end
+end
+regions = Region.all
 
 #----------------------
 # Environments
@@ -113,7 +107,6 @@ environmentTypes = EnvironmentType.create!([
 #----------------------
 areas = Area.create!([
   {id:1, name: "Unknown", code:"?", description: 'A mysterious area'}])
-
 
 #----------------------
 # RegionsBorders
